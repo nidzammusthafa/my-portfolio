@@ -46,10 +46,10 @@ const Header = () => {
       }`}
     >
       <div className="mx-auto max-w-screen-xl px-6 sm:px-12 md:px-24">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-end md:justify-between h-20">
           <Link
             href="/#"
-            className="text-accent font-mono text-2xl font-bold relative z-[60]"
+            className="hidden md:block text-accent font-mono text-2xl font-bold relative z-[60]"
           >
             ANM
           </Link>
@@ -110,6 +110,13 @@ const Header = () => {
         }`}
       >
         <nav className="flex flex-col items-center justify-center h-full space-y-8">
+          <Link
+            href="/#"
+            onClick={() => setIsMenuOpen(false)}
+            className="text-accent font-mono text-3xl font-bold mb-8"
+          >
+            ANM
+          </Link>
           {navLinks.map((link) => (
             <Link
               key={link.name}

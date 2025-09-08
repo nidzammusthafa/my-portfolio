@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { List, X } from 'lucide-react';
-import type { Heading } from '@/types';
+import { useState, useEffect } from "react";
+import { List, X } from "lucide-react";
+import type { Heading } from "@/types";
 
 interface MobileTOCProps {
   headings: Heading[];
@@ -18,13 +18,17 @@ const MobileTOC = ({ headings }: MobileTOCProps) => {
   // Close TOC when clicking outside of it on mobile
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      if (isOpen && event.target instanceof Element && !event.target.closest('.toc-container')) {
+      if (
+        isOpen &&
+        event.target instanceof Element &&
+        !event.target.closest(".toc-container")
+      ) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener("mousedown", handleOutsideClick);
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [isOpen]);
 
@@ -39,11 +43,13 @@ const MobileTOC = ({ headings }: MobileTOCProps) => {
       </button>
 
       <div
-        className={`toc-container fixed top-0 left-0 h-full w-72 bg-light-navy p-6 shadow-lg z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`toc-container fixed top-0 left-0 h-full w-72 bg-light-navy/10 backdrop-blur-md overflow-y-auto p-6 shadow-lg z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <h3 className="text-lg font-bold text-lightest-slate mb-4">On this page</h3>
+        <h3 className="text-lg font-bold text-lightest-slate mb-4">
+          On this page
+        </h3>
         <ul className="space-y-2">
           {headings.map((heading) => (
             <li
