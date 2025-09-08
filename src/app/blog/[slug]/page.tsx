@@ -9,6 +9,7 @@ import type { Tag, Heading } from "@/types";
 import FeaturedPosts from "@/components/FeaturedPosts";
 import { NotionPage } from "@/components/NotionPage";
 import TOC from "@/components/TOC";
+import MobileTOC from "@/components/MobileTOC";
 import BackToTopButton from "@/components/BackToTopButton";
 import { ExtendedRecordMap } from "notion-types";
 
@@ -178,8 +179,15 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
             {/* Notion Content Rendered Here */}
             <NotionPage recordMap={recordMap} />
           </article>
+
+          {/* Featured Posts for Mobile */}
+          <div className="block lg:hidden mt-12">
+            <h2 className="text-2xl font-bold text-lightest-slate mb-4">Featured Posts</h2>
+            <FeaturedPosts />
+          </div>
         </div>
       </div>
+      <MobileTOC headings={headings} />
       <BackToTopButton />
     </main>
   );

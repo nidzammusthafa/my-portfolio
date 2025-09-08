@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="bg-dark-navy text-slate font-sans leading-relaxed selection:bg-accent/20 overflow-x-hidden">
+        <div className="bg-dark-navy text-slate font-sans leading-relaxed selection:bg-accent/20 w-screen overflow-x-hidden lg:overflow-x-visible">
           <Header />
           <Socials />
           <ScrollIndicator />
