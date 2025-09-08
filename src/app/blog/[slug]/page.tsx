@@ -5,9 +5,45 @@ import type { Metadata } from "next";
 import { getSingleBlogPost, getPublishedBlogPosts } from "@/lib/notion";
 import { IconArrowLeft } from "@/components/Icons";
 import Image from "next/image";
-import type { Tag } from "@/types";
-import TOC from "@/components/TOC";
+import type { Tag, Heading } from "@/types";
 import FeaturedPosts from "@/components/FeaturedPosts";
+import { NotionPage } from "@/components/NotionPage";
+import TOC from "@/components/TOC";
+import BackToTopButton from "@/components/BackToTopButton";
+import { ExtendedRecordMap } from "notion-types";
+
+// Helper function to extract headings from recordMap
+const getHeadings = (recordMap: ExtendedRecordMap): Heading[] => {
+  const headings: Heading[] = [];
+  const blocks = Object.values(recordMap.block);
+
+  for (const block of blocks) {
+    if (
+      block.value &&
+      (block.value.type === "header" ||
+        block.value.type === "sub_header" ||
+        block.value.type === "sub_sub_header")
+    ) {
+      const level =
+        block.value.type === "header"
+          ? 1
+          : block.value.type === "sub_header"
+          ? 2
+          : 3;
+      const text =
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        block.value.properties?.title.map((t: any) => t[0]).join("") || "";
+      if (text) {
+        headings.push({
+          id: block.value.id.replaceAll('-', ''),
+          level: level,
+          text: text,
+        });
+      }
+    }
+  }
+  return headings;
+};
 
 // Color map for tags and categories
 const tagColorMap: { [key: string]: string } = {
@@ -66,7 +102,8 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   if (!result) {
     notFound();
   }
-  const { post, headings } = result;
+  const { post, recordMap } = result;
+  const headings = getHeadings(recordMap);
 
   return (
     <main className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24">
@@ -138,18 +175,12 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
               )}
             </div>
 
-            <div
-              className="prose prose-lg prose-invert max-w-none \
-                         prose-headings:text-lightest-slate prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl \
-                         prose-a:text-accent hover:prose-a:underline \
-                         prose-strong:text-lightest-slate \
-                         prose-code:bg-light-navy prose-code:p-1 prose-code:rounded prose-code:font-mono \
-                         prose-pre:bg-light-navy prose-pre:p-4 prose-pre:rounded-md"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            {/* Notion Content Rendered Here */}
+            <NotionPage recordMap={recordMap} />
           </article>
         </div>
       </div>
+      <BackToTopButton />
     </main>
   );
 };

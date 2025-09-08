@@ -10,7 +10,7 @@ const FeaturedPosts = async () => {
   }
 
   return (
-    <div className="mt-8 p-4 rounded-lg bg-transparent backdrop-blur-sm">
+    <div className="mt-8 p-4 rounded-lg bg-light-navy/10 backdrop-blur-sm">
       <h3 className="font-bold text-lightest-slate mb-3">Featured Posts</h3>
       <ul className="space-y-3">
         {featuredPosts.map((post) => (

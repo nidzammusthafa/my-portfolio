@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Socials from "@/components/Socials";
+import ScrollIndicator from "@/components/ScrollIndicator";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="bg-dark-navy text-slate font-sans leading-relaxed selection:bg-accent/20">
+        <div className="bg-dark-navy text-slate font-sans leading-relaxed selection:bg-accent/20 overflow-x-hidden">
           <Header />
           <Socials />
+          <ScrollIndicator />
           {children}
         </div>
       </body>

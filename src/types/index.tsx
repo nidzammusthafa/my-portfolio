@@ -46,6 +46,8 @@ export interface Heading {
   id: string;
 }
 
+import { ExtendedRecordMap } from 'notion-types';
+
 export interface Post {
   slug: string;
   title: string;
@@ -56,4 +58,5 @@ export interface Post {
   tags?: Tag[];
   category?: Tag[];
   headings?: Heading[];
+  recordMap?: ExtendedRecordMap;
 }

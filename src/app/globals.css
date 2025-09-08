@@ -44,6 +44,64 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html,
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Custom Styles for react-notion-x */
+.notion-container .notion-page-icon-hero {
+  display: none !important;
+}
+
+.notion-container .notion-title {
+  display: none !important;
+}
+
+.notion-container .notion-page-cover {
+  display: none !important;
+}
+
+/* Spacing for headings */
+.notion-container .notion-h1,
+.notion-container .notion-h2,
+.notion-container .notion-h3 {
+  color: rgb(167, 165, 184);
+}
+
+/* Theme overrides for react-notion-x */
+.notion-container .notion,
+.notion-container .notion-frame,
+.notion-container .notion-page {
+  background: transparent !important;
+}
+
+.notion-container .notion-collection-card {
+  background: var(--color-light-navy) !important;
+}
+
+.notion-container .notion-hr {
+  border-color: var(--color-light-navy) !important;
+}
+
+.notion-container .notion-code {
+  background: var(--color-light-navy) !important;
+  color: var(--color-lightest-slate) !important;
+}
+
+.notion-container a.notion-page-link {
+  color: var(--color-accent) !important;
+  text-decoration: underline;
+}
+
 /* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
@@ -62,4 +120,16 @@ html {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-accent);
+}
+
+.notion-page-cover-wrapper,
+.notion-header {
+  display: none !important;
+}
+
+.notion-app {
+  background-color: transparent !important;
+  @apply font-sans leading-relaxed antialiased;
+  background-color: transparent !important;
+  color: var(--color-slate) !important;
 }
