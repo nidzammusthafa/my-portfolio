@@ -19,7 +19,7 @@ const Projects = () => {
         ))}
       </ul>
       <div className="mt-12">
-        <a
+        <Link
           href="/projects"
           className="inline-flex items-center font-semibold leading-tight text-lightest-slate group"
         >
@@ -29,7 +29,7 @@ const Projects = () => {
             </span>
             <IconArrowRight />
           </span>
-        </a>
+        </Link>
       </div>
     </Section>
   );

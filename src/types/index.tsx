@@ -18,7 +18,7 @@ export interface Project {
 export interface Skill {
   name: string;
   level: number;
-  category: "Frontend" | "Backend" | "Database" | "DevOps" | "Tools";
+  category: "Frontend" | "Backend" | "Database" | "DevOps" | "Tools" | "OS";
 }
 
 export interface Experience {
@@ -32,4 +32,28 @@ export interface Education {
   institution: string;
   degree: string;
   period: string;
+}
+
+export interface Tag {
+  id: string;
+  name: string;
+  color: string;
+}
+
+export interface Heading {
+  level: number;
+  text: string;
+  id: string;
+}
+
+export interface Post {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  content: string;
+  coverImage?: string;
+  tags?: Tag[];
+  category?: Tag[];
+  headings?: Heading[];
 }

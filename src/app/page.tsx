@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import Blog from "@/components/Blog";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -16,6 +17,7 @@ const Home = () => {
           <About />
           <Skills />
           <Projects />
+          <Blog />
           <Services />
           <ContactForm />
           <Footer />

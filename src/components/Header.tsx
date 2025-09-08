@@ -7,6 +7,7 @@ const navLinks = [
   { name: "About", href: "/#about" },
   { name: "Skills", href: "/#skills" },
   { name: "Projects", href: "/#projects" },
+  { name: "Blogs", href: "/#blogs" },
   { name: "Services", href: "/#services" },
   { name: "Contact", href: "/#contact" },
 ];
@@ -109,15 +110,14 @@ const Header = () => {
         }`}
       >
         <nav className="flex flex-col items-center justify-center h-full space-y-8">
-          {navLinks.map((link, i) => (
+          {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
               className="text-lightest-slate hover:text-accent transition-colors duration-300 text-lg"
             >
-              <span className="text-accent font-mono mr-1">0{i + 1}.</span>
-              {link.name}
+              <span className="text-accent font-mono mr-1">{link.name}</span>
             </Link>
           ))}
           <Link

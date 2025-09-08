@@ -1,15 +1,18 @@
 import { IconArrowLeft } from "@/components/Icons";
-import { ProjectCard, projects } from "@/components/ProjectData";
+import { PostCard } from "@/components/BlogData";
+import { getPublishedBlogPosts } from "@/lib/notion";
 import Link from "next/link";
 import React from "react";
 
-const AllProjects = () => {
+const AllBlogPostsPage = async () => {
+  const posts = await getPublishedBlogPosts();
+
   return (
     <main className="mx-auto min-h-screen max-w-screen-lg px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24">
       <div className="lg:py-24">
         <div>
           <Link
-            href="/#"
+            href="/"
             className="group mb-8 inline-flex items-center font-semibold leading-tight text-accent transition-colors duration-300 hover:text-lightest-slate"
           >
             <IconArrowLeft />
@@ -17,13 +20,13 @@ const AllProjects = () => {
           </Link>
         </div>
         <h1 className="text-4xl font-bold tracking-tight text-lightest-slate sm:text-5xl">
-          All Projects
+          All Blog Posts
         </h1>
 
-        <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
-          {projects.map((project, index) => (
-            <li key={index} className="transition-opacity">
-              <ProjectCard project={project} />
+        <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
+          {posts.map((post) => (
+            <li key={post.slug} className="transition-opacity">
+              <PostCard post={post} />
             </li>
           ))}
         </ul>
@@ -32,4 +35,4 @@ const AllProjects = () => {
   );
 };
 
-export default AllProjects;
+export default AllBlogPostsPage;

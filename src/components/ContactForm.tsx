@@ -19,10 +19,10 @@ const ContactForm = () => {
             <p>
               <strong>Email:</strong>{" "}
               <a
-                href="mailto:ahmad.nidzam.musthafa@gmail.com"
+                href="mailto:nidzam0501@gmail.com"
                 className="text-accent hover:underline"
               >
-                ahmad.nidzam.musthafa@gmail.com
+                nidzam0501@gmail.com
               </a>
             </p>
             <p>

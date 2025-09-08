@@ -17,7 +17,14 @@ const AllSkills = () => {
     {} as Record<string, Skill[]>
   );
 
-  const categories = ["Frontend", "Backend", "Database", "DevOps", "Tools"];
+  const categories = [
+    "Frontend",
+    "Backend",
+    "Database",
+    "DevOps",
+    "Tools",
+    "OS",
+  ];
 
   return (
     <main className="mx-auto min-h-screen max-w-screen-lg px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24">
@@ -28,7 +35,7 @@ const AllSkills = () => {
             className="group mb-8 inline-flex items-center font-semibold leading-tight text-accent transition-colors duration-300 hover:text-lightest-slate"
           >
             <IconArrowLeft />
-            <span className="ml-2">Ahmad Nidzam Musthafa</span>
+            <span className="ml-2">Back to Home</span>
           </Link>
         </div>
         <h1 className="text-4xl font-bold tracking-tight text-lightest-slate sm:text-5xl">
