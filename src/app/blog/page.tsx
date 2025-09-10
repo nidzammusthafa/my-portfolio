@@ -24,8 +24,12 @@ const AllBlogPostsPage = async () => {
         </h1>
 
         <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
-          {posts.map((post) => (
-            <li key={post.slug} className="transition-opacity">
+          {posts.map((post, index) => (
+            <li
+              key={post.slug}
+              className="fade-in-on-load"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <PostCard post={post} />
             </li>
           ))}
