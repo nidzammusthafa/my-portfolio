@@ -136,14 +136,14 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
     author: [
       {
         "@type": "Person",
-        name: post.author?.name || "Nidzam", // Replace with your name
-        url: "https://www.mstblog.my.id", // Replace with your website
+        name: post.author?.name || "Nidzam",
+        url: "https://www.mstblog.my.id",
       },
     ],
     description: post.excerpt,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://www.mstblog.my.id/blog/${post.slug}`, // Replace with your actual domain
+      "@id": `https://www.mstblog.my.id/blog/${post.slug}`,
     },
   };
 
@@ -152,7 +152,9 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
       {/* Add JSON-LD to your page */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
       />
       <div className="lg:grid lg:grid-cols-12 lg:gap-x-12">
         <aside className="hidden lg:block lg:col-span-3 lg:sticky lg:top-24 self-start">
