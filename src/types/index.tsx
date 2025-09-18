@@ -61,6 +61,5 @@ export interface Post {
   recordMap?: ExtendedRecordMap;
   author?: {
     name: string;
-    avatar_url: string;
   };
 }

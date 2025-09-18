@@ -186,13 +186,6 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
             <div className="flex items-center gap-4 mb-2">
               {post.author && (
                 <div className="flex items-center gap-2">
-                  <Image
-                    src={post.author.avatar_url}
-                    alt={post.author.name}
-                    width={24}
-                    height={24}
-                    className="rounded-full"
-                  />
                   <p className="font-mono text-sm text-slate">
                     {post.author.name}
                   </p>
