@@ -1,7 +1,9 @@
+import tailwindcssTypography from '@tailwindcss/typography';
+
 const config = {
   plugins: [
     ["@tailwindcss/postcss", { 
-      plugins: [require('@tailwindcss/typography')] 
+      plugins: [tailwindcssTypography] 
     }]
   ],
 };

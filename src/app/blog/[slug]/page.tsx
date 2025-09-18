@@ -79,12 +79,26 @@ export async function generateMetadata({
     return {};
   }
   const { post } = result;
+  const keywords = post.tags?.map((tag) => tag.name);
+  if (post.category) {
+    keywords?.push(...post.category.map((cat) => cat.name));
+  }
+
+  const canonicalUrl = `https://your-domain.com/blog/${post.slug}`; // Replace with your actual domain
+
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      url: canonicalUrl,
+      type: "article",
+      publishedTime: new Date(post.date).toISOString(),
       images: [
         {
           url: post.coverImage || "/og-image.png",
@@ -93,6 +107,12 @@ export async function generateMetadata({
           alt: post.title,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage || "/og-image.png"],
     },
   };
 }
@@ -106,8 +126,32 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   const { post, recordMap } = result;
   const headings = getHeadings(recordMap);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "image": post.coverImage || "/og-image.png",
+    "datePublished": new Date(post.date).toISOString(),
+    "dateModified": new Date(post.date).toISOString(),
+    "author": [{
+        "@type": "Person",
+        "name": "Your Name", // Replace with your name
+        "url": "https://your-domain.com" // Replace with your website
+      }],
+    "description": post.excerpt,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://your-domain.com/blog/${post.slug}` // Replace with your actual domain
+    }
+  };
+
   return (
     <main className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24">
+      {/* Add JSON-LD to your page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="lg:grid lg:grid-cols-12 lg:gap-x-12">
         <aside className="hidden lg:block lg:col-span-3 lg:sticky lg:top-24 self-start">
           <TOC headings={headings} />
