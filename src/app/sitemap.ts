@@ -7,11 +7,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all blog posts and filter out any without a valid date
   const posts = await getPublishedBlogPosts();
   const postEntries: MetadataRoute.Sitemap = posts
-    .filter(post => post.date) // Filter out posts with no date
+    .filter((post) => post.date) // Filter out posts with no date
     .map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.date).toISOString(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8,
     }));
 
