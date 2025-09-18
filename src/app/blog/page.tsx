@@ -6,8 +6,12 @@ import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "All Blog Posts",
-  description: "Browse all my blog posts on web development, technology, and more.",
+  title: {
+    template: "%s | Blog Teknologi Saya", // %s akan diganti dengan judul halaman
+    default: "Blog Teknologi Saya", // Judul default jika tidak ada yang spesifik
+  },
+  description:
+    "Blog yang membahas perkembangan terbaru di dunia teknologi dan pengembangan web.",
 };
 
 const AllBlogPostsPage = async () => {

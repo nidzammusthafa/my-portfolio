@@ -59,4 +59,8 @@ export interface Post {
   category?: Tag[];
   headings?: Heading[];
   recordMap?: ExtendedRecordMap;
+  author?: {
+    name: string;
+    avatar_url: string;
+  };
 }

@@ -30,6 +30,7 @@ const pageToPost = (page: any): Post => {
 
   const title = page.properties.title?.title[0]?.plain_text || "";
   const slug = page.properties.slug?.rich_text[0]?.plain_text || slugify(title);
+  const author = page.properties.author?.people[0] || null;
 
   return {
     slug: slug,
@@ -40,6 +41,7 @@ const pageToPost = (page: any): Post => {
     coverImage: coverImage,
     tags: page.properties.tags?.multi_select || [],
     category: page.properties.category?.multi_select || [],
+    author: author,
   };
 };
 

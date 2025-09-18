@@ -36,7 +36,7 @@ const getHeadings = (recordMap: ExtendedRecordMap): Heading[] => {
         block.value.properties?.title.map((t: any) => t[0]).join("") || "";
       if (text) {
         headings.push({
-          id: block.value.id.replaceAll('-', ''),
+          id: block.value.id.replaceAll("-", ""),
           level: level,
           text: text,
         });
@@ -76,7 +76,7 @@ export async function generateMetadata({
 }: BlogPostPageProps): Promise<Metadata> {
   const result = await getSingleBlogPost(params.slug);
   if (!result) {
-    return {};
+    return { title: "Postingan Tidak Ditemukan" };
   }
   const { post } = result;
   const keywords = post.tags?.map((tag) => tag.name);
@@ -84,7 +84,7 @@ export async function generateMetadata({
     keywords?.push(...post.category.map((cat) => cat.name));
   }
 
-  const canonicalUrl = `https://your-domain.com/blog/${post.slug}`; // Replace with your actual domain
+  const canonicalUrl = `https://www.mstblog.my.id/blog/${post.slug}`; // Replace with your actual domain
 
   return {
     title: post.title,
@@ -129,20 +129,22 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": post.title,
-    "image": post.coverImage || "/og-image.png",
-    "datePublished": new Date(post.date).toISOString(),
-    "dateModified": new Date(post.date).toISOString(),
-    "author": [{
+    headline: post.title,
+    image: post.coverImage || "/og-image.png",
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    author: [
+      {
         "@type": "Person",
-        "name": "Your Name", // Replace with your name
-        "url": "https://your-domain.com" // Replace with your website
-      }],
-    "description": post.excerpt,
-    "mainEntityOfPage": {
+        name: post.author?.name || "Nidzam", // Replace with your name
+        url: "https://www.mstblog.my.id", // Replace with your website
+      },
+    ],
+    description: post.excerpt,
+    mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://your-domain.com/blog/${post.slug}` // Replace with your actual domain
-    }
+      "@id": `https://www.mstblog.my.id/blog/${post.slug}`, // Replace with your actual domain
+    },
   };
 
   return (
@@ -181,7 +183,23 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
                 />
               </div>
             )}
-            <p className="font-mono text-sm text-slate mb-2">{post.date}</p>
+            <div className="flex items-center gap-4 mb-2">
+              {post.author && (
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={post.author.avatar_url}
+                    alt={post.author.name}
+                    width={24}
+                    height={24}
+                    className="rounded-full"
+                  />
+                  <p className="font-mono text-sm text-slate">
+                    {post.author.name}
+                  </p>
+                </div>
+              )}
+              <p className="font-mono text-sm text-slate">{post.date}</p>
+            </div>
             <h1 className="text-4xl font-bold tracking-tight text-lightest-slate sm:text-5xl mb-4">
               {post.title}
             </h1>
@@ -226,7 +244,9 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 
           {/* Featured Posts for Mobile */}
           <div className="block lg:hidden mt-12">
-            <h2 className="text-2xl font-bold text-lightest-slate mb-4">Featured Posts</h2>
+            <h2 className="text-2xl font-bold text-lightest-slate mb-4">
+              Featured Posts
+            </h2>
             <FeaturedPosts />
           </div>
         </div>
