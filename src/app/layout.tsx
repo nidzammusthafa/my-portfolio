@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
   description:
     "A modern and professional personal portfolio website to showcase skills, projects, and offer services as a FullStack Web Developer, built with React and Tailwind CSS.",
+  verification: {
+    google: "googlebf037640835224bf",
+  },
 };
 
 export default function RootLayout({
