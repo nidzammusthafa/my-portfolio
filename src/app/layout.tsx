@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.idplay.it.com"),
+  metadataBase: new URL("https://www.mstblog.my.id"),
   title: {
     default: "Ahmad Nidzam Musthafa - FullStack Web Developer",
     template: "%s - Ahmad Nidzam Musthafa",
