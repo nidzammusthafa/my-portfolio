@@ -30,6 +30,14 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/nidzammusthafa/idplay",
   },
   {
+    title: "Al-Qur'an",
+    description:
+      "Membangun aplikasi web Next.js yang responsif untuk provider internet. Aplikasi ini memiliki fitur utama pengecekan jangkauan geografis dan tampilan paket layanan yang dinamis.",
+    technologies: ["Nextjs", "Typescript", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1624862304458-0bb3d6f4b13c",
+    liveUrl: "https://quran-with-ai.vercel.app",
+  },
+  {
     title: "IST Test Tools",
     description:
       "Kenali Potensi Terbaik Anda. Mulai Tes IST Sekarang! Penasaran di mana letak kekuatan berpikir Anda? Aplikasi Tes IST (Intelligenz-Struktur-Test) kami hadir dengan antarmuka modern dan proses yang intuitif untuk membantu Anda memetakan kecerdasan Anda secara akurat.",
@@ -37,15 +45,6 @@ export const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1620302044935-444961a5d028",
     liveUrl: "https://ist-test.vercel.app",
     githubUrl: "#",
-  },
-
-  {
-    title: "Al-Qur'an",
-    description:
-      "Membangun aplikasi web Next.js yang responsif untuk provider internet. Aplikasi ini memiliki fitur utama pengecekan jangkauan geografis dan tampilan paket layanan yang dinamis.",
-    technologies: ["Nextjs", "Typescript", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1624862304458-0bb3d6f4b13c",
-    liveUrl: "https://quran-with-ai.vercel.app",
   },
 ];
 
