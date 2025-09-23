@@ -45,7 +45,7 @@ export const projects: Project[] = [
       "Membangun aplikasi web Next.js yang responsif untuk provider internet. Aplikasi ini memiliki fitur utama pengecekan jangkauan geografis dan tampilan paket layanan yang dinamis.",
     technologies: ["Nextjs", "Typescript", "Tailwind CSS"],
     image: "https://images.unsplash.com/photo-1624862304458-0bb3d6f4b13c",
-    liveUrl: "https://quran-swart.vercel.app/id",
+    liveUrl: "https://quran-with-ai.vercel.app",
   },
 ];
 
