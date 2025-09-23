@@ -16,11 +16,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
+  metadataBase: new URL("https://www.idplay.it.com"),
+  title: {
+    default: "Ahmad Nidzam Musthafa - FullStack Web Developer",
+    template: "%s - Ahmad Nidzam Musthafa",
+  },
   description:
     "A modern and professional personal portfolio website to showcase skills, projects, and offer services as a FullStack Web Developer, built with React and Tailwind CSS.",
-  verification: {
-    google: "googlebf037640835224bf",
+  authors: [{ name: "Ahmad Nidzam Musthafa" }],
+  creator: "Ahmad Nidzam Musthafa",
+  keywords: [
+    "FullStack Developer",
+    "Web Developer",
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "JavaScript",
+    "TypeScript",
+    "Portfolio",
+    "Ahmad Nidzam Musthafa",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://www.mstblog.my.id/",
+    siteName: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
+    title: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
+    description:
+      "A modern and professional personal portfolio website to showcase skills, projects, and offer services as a FullStack Web Developer, built with React and Tailwind CSS.",
+    images: "/developer.webp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
+    description:
+      "A modern and professional personal portfolio website to showcase skills, projects, and offer services as a FullStack Web Developer, built with React and Tailwind CSS.",
+    images: "/developer.webp",
   },
 };
 
