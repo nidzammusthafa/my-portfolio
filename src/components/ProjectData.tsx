@@ -3,50 +3,7 @@ import type { Project } from "../types";
 import { IconExternalLink } from "./Icons";
 import Image from "next/image";
 
-export const projects: Project[] = [
-  {
-    title: "WhatsApp Business Dashboard",
-    description:
-      "Platform terpusat yang dirancang untuk mengotomatisasi pemasaran WhatsApp, meningkatkan interaksi pelanggan, dan menjaga keamanan akun. Aplikasi ini memberdayakan bisnis untuk menjalankan kampanye secara efisien, mengelola hubungan pelanggan, dan memastikan pesan selalu sampai tujuan.",
-    technologies: [
-      "Next.js",
-      "TypeScript",
-      "Prisma",
-      "Tailwind CSS",
-      "Express Js",
-      "Socket.IO",
-    ],
-    image: "https://images.unsplash.com/photo-1633675254245-efd890d087b8",
-    liveUrl: "https://whatsapp-business-tools.vercel.app/dashboard",
-    githubUrl: "https://github.com/nidzammusthafa/whatsapp-business-tools",
-  },
-  {
-    title: "IdPlay Company Profile",
-    description:
-      "Membangun aplikasi web Next.js yang responsif untuk provider internet. Aplikasi ini memiliki fitur utama pengecekan jangkauan geografis dan tampilan paket layanan yang dinamis.",
-    technologies: ["Nextjs", "Typescript", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1531765408077-9a1f85f90df1",
-    liveUrl: "https://idplay.it.com",
-    githubUrl: "https://github.com/nidzammusthafa/idplay",
-  },
-  {
-    title: "Al-Qur'an",
-    description:
-      "Membangun aplikasi web Next.js yang responsif untuk provider internet. Aplikasi ini memiliki fitur utama pengecekan jangkauan geografis dan tampilan paket layanan yang dinamis.",
-    technologies: ["Nextjs", "Typescript", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1624862304458-0bb3d6f4b13c",
-    liveUrl: "https://quran-with-ai.vercel.app",
-  },
-  {
-    title: "IST Test Tools",
-    description:
-      "Kenali Potensi Terbaik Anda. Mulai Tes IST Sekarang! Penasaran di mana letak kekuatan berpikir Anda? Aplikasi Tes IST (Intelligenz-Struktur-Test) kami hadir dengan antarmuka modern dan proses yang intuitif untuk membantu Anda memetakan kecerdasan Anda secara akurat.",
-    technologies: ["Nextjs", "Typescript", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1620302044935-444961a5d028",
-    liveUrl: "https://ist-test.vercel.app",
-    githubUrl: "#",
-  },
-];
+export { projects } from "@/data/projects";
 
 interface ProjectCardProps {
   project: Project;
