@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getPublishedBlogPosts } from "@/lib/notion";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.mstblog.my.id";
+  const baseUrl = "https://www.nidzam.my.id";
 
   // Get all blog posts and filter out any without a valid date
   const posts = await getPublishedBlogPosts();

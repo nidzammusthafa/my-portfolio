@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mstblog.my.id"),
+  metadataBase: new URL("https://www.nidzam.my.id"),
   title: {
     default: "Ahmad Nidzam Musthafa - FullStack Web Developer",
     template: "%s - Ahmad Nidzam Musthafa",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://www.mstblog.my.id/",
+    url: "https://www.nidzam.my.id/",
     siteName: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
     title: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
     description:
@@ -64,7 +64,7 @@ export default function RootLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="yc_7tvoFvuFEomPI-w5j2iR62RA6ybZfbqu8krzLcJg"
+          content="bXCO2kvKS0auCVPb5s-jS36dVELhgH-LAJskTYJAX8Q"
         />
       </head>
       <body

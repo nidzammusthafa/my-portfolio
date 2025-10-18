@@ -84,7 +84,7 @@ export async function generateMetadata({
     keywords?.push(...post.category.map((cat) => cat.name));
   }
 
-  const canonicalUrl = `https://www.mstblog.my.id/blog/${post.slug}`; // Replace with your actual domain
+  const canonicalUrl = `https://www.nidzam.my.id/blog/${post.slug}`; // Replace with your actual domain
 
   return {
     title: post.title,
@@ -137,13 +137,13 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
       {
         "@type": "Person",
         name: post.author?.name || "Nidzam",
-        url: "https://www.mstblog.my.id",
+        url: "https://www.nidzam.my.id",
       },
     ],
     description: post.excerpt,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://www.mstblog.my.id/blog/${post.slug}`,
+      "@id": `https://www.nidzam.my.id/blog/${post.slug}`,
     },
   };
 
