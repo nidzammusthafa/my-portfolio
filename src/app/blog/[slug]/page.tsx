@@ -5,13 +5,17 @@ import type { Metadata } from "next";
 import { getSingleBlogPost, getPublishedBlogPosts } from "@/lib/notion";
 import { IconArrowLeft } from "@/components/Icons";
 import Image from "next/image";
-import type { Tag, Heading } from "@/types";
+import type { Heading } from "@/types";
 import FeaturedPosts from "@/components/FeaturedPosts";
 import { NotionPage } from "@/components/NotionPage";
 import TOC from "@/components/TOC";
 import MobileTOC from "@/components/MobileTOC";
 import BackToTopButton from "@/components/BackToTopButton";
 import { ExtendedRecordMap } from "notion-types";
+
+export const dynamicParams = true;
+
+type BlogPostParams = { slug: string };
 
 // Helper function to extract headings from recordMap
 const getHeadings = (recordMap: ExtendedRecordMap): Heading[] => {
@@ -60,12 +64,6 @@ const tagColorMap: { [key: string]: string } = {
   red: "bg-red-200 text-red-800",
 };
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export async function generateStaticParams() {
   const posts = await getPublishedBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
@@ -73,8 +71,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: BlogPostPageProps): Promise<Metadata> {
-  const result = await getSingleBlogPost(params.slug);
+}: {
+  params: Promise<BlogPostParams>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const result = await getSingleBlogPost(slug);
   if (!result) {
     return { title: "Postingan Tidak Ditemukan" };
   }
@@ -117,8 +118,13 @@ export async function generateMetadata({
   };
 }
 
-const BlogPostPage = async ({ params }: BlogPostPageProps) => {
-  const result = await getSingleBlogPost(params.slug);
+const BlogPostPage = async ({
+  params,
+}: {
+  params: Promise<BlogPostParams>;
+}) => {
+  const { slug } = await params;
+  const result = await getSingleBlogPost(slug);
 
   if (!result) {
     notFound();
@@ -203,7 +209,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
               {post.category && post.category.length > 0 && (
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-slate">Category:</span>
-                  {post.category.map((cat: Tag) => (
+                  {post.category.map((cat) => (
                     <span
                       key={cat.id}
                       className={`text-xs font-medium px-2.5 py-1 rounded-full ${
@@ -219,7 +225,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-slate">Tags:</span>
                   {post.tags &&
-                    post.tags.map((tag: Tag) => (
+                    post.tags.map((tag) => (
                       <span
                         key={tag.id}
                         className={`text-xs font-medium px-2.5 py-1 rounded-full ${

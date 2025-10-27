@@ -1,26 +1,70 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import jwt from "jsonwebtoken";
+import { getPublishedBlogPosts } from "@/lib/notion";
 
-export async function POST(request: NextRequest) {
-  const body = await request.json();
-  const { slug, secret } = body;
-  if (secret !== process.env.REVALIDATION_SECRET) {
-    return NextResponse.json({ message: "Invalid token" }, { status: 401 });
+const JWT_SECRET = process.env.JWT_SECRET || "SUPER_SECRET_KEY_DEFAULT";
+
+export async function POST(request: Request) {
+  const authHeader = request.headers.get("authorization");
+
+  if (!authHeader || !authHeader.toLowerCase().startsWith("bearer ")) {
+    return NextResponse.json(
+      { success: false, message: "Token tidak ditemukan." },
+      { status: 401 }
+    );
   }
 
-  if (!slug) {
-    return NextResponse.json({ message: "Slug is required" }, { status: 400 });
+  const token = authHeader.slice(7).trim();
+
+  try {
+    jwt.verify(token, JWT_SECRET);
+  } catch (error) {
+    console.error("Invalid token on revalidate attempt:", error);
+    return NextResponse.json(
+      { success: false, message: "Token tidak valid atau telah kedaluwarsa." },
+      { status: 401 }
+    );
   }
 
   try {
-    revalidatePath(`/blog/${slug}`);
-    revalidatePath("/blog");
+    const posts = await getPublishedBlogPosts();
+    const revalidatedSlugs: string[] = [];
 
-    return NextResponse.json({ revalidated: true, now: Date.now() });
+    revalidatePath("/", "page");
+    revalidatePath("/blog", "page");
+    revalidatePath("/blog/[slug]", "page");
+
+    for (const post of posts) {
+      const path = `/blog/${post.slug}`;
+      revalidatePath(path, "page");
+      revalidatedSlugs.push(path);
+    }
+
+    revalidatePath("/sitemap.xml");
+
+    return NextResponse.json({
+      success: true,
+      message: "Revalidate berhasil dijalankan.",
+      revalidatedAt: new Date().toISOString(),
+      revalidatedSlugs,
+    });
   } catch (error) {
+    console.error("Error during revalidation:", error);
     return NextResponse.json(
-      { message: "Error revalidating", error },
+      {
+        success: false,
+        message: "Gagal melakukan revalidate. Periksa log server untuk detail.",
+      },
       { status: 500 }
     );
   }
 }
+
+export async function GET() {
+  return NextResponse.json(
+    { message: "Metode tidak diizinkan." },
+    { status: 405 }
+  );
+}
+

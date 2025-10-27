@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Socials from "@/components/Socials";
 import ScrollIndicator from "@/components/ScrollIndicator";
+import { AuthProvider } from "@/components/auth-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,12 +71,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="bg-dark-navy text-slate font-sans leading-relaxed selection:bg-accent/20 w-screen overflow-x-hidden lg:overflow-x-visible">
-          <Header />
-          <Socials />
-          <ScrollIndicator />
-          {children}
-        </div>
+        <AuthProvider protectedRoutes={["/admin/revalidate"]}>
+          <div className="bg-dark-navy text-slate font-sans leading-relaxed selection:bg-accent/20 w-screen overflow-x-hidden lg:overflow-x-visible">
+            <Header />
+            <Socials />
+            <ScrollIndicator />
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
