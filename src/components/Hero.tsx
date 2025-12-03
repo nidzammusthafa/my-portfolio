@@ -51,7 +51,7 @@ export default function Hero() {
       <div className="absolute right-0 bottom-0 w-[300px] md:w-[500px] h-[600px] opacity-30 pointer-events-none select-none mix-blend-color-dodge z-0 hidden lg:block scroll-item slide-from-right">
         <div className="relative w-full h-full">
           <Image
-            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80"
+            src="/hero.png"
             alt="Portrait"
             fill
             className="object-cover rounded-[100px] rotate-6 mask-image-gradient"
