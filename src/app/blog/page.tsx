@@ -1,51 +1,71 @@
-import { IconArrowLeft } from "@/components/Icons";
-import { PostCard } from "@/components/BlogData";
+import { ArrowLeft } from "lucide-react";
+import { PostCard } from "@/components/PostCard";
 import { getPublishedBlogPosts } from "@/lib/notion";
 import Link from "next/link";
 import React from "react";
 import type { Metadata } from "next";
+import FlashlightEffect from "@/components/FlashlightEffect";
+import ScrollObserver from "@/components/ScrollObserver";
+import Starfield from "@/components/Starfield";
+import Grid3d from "@/components/Grid3d";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | Blog Teknologi Saya", // %s akan diganti dengan judul halaman
-    default: "Blog Teknologi Saya", // Judul default jika tidak ada yang spesifik
-  },
+  title: "Blog | Ahmad Nidzam Musthafa",
   description:
-    "Blog yang membahas perkembangan terbaru di dunia teknologi dan pengembangan web.",
+    "Insights on web development, software architecture, and modern tech stacks.",
 };
 
 const AllBlogPostsPage = async () => {
   const posts = await getPublishedBlogPosts();
 
   return (
-    <main className="mx-auto min-h-screen max-w-screen-lg px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24">
-      <div className="lg:py-24">
-        <div>
+    <>
+      <FlashlightEffect />
+      <ScrollObserver />
+
+      {/* Abstract Background Mesh */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden perspective-container">
+        <Starfield />
+        <Grid3d />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent-500/10 rounded-full blur-[100px] animate-float"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full blur-[100px] animate-float-delayed bg-blue-600/10"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-transparent to-neutral-950"></div>
+      </div>
+
+      <main className="w-full py-12 relative overflow-x-hidden min-h-screen">
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 mb-24">
           <Link
             href="/"
-            className="group mb-8 inline-flex items-center font-semibold leading-tight text-accent transition-colors duration-300 hover:text-lightest-slate"
+            className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mb-12 scroll-item slide-from-left"
           >
-            <IconArrowLeft />
-            <span className="ml-2">Back to Home</span>
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
           </Link>
-        </div>
-        <h1 className="text-4xl font-bold tracking-tight text-lightest-slate sm:text-5xl">
-          All Blog Posts
-        </h1>
 
-        <ul className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
-          {posts.map((post, index) => (
-            <li
-              key={post.slug}
-              className="fade-in-on-load"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <PostCard post={post} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+          <h1 className="text-4xl md:text-6xl font-mono font-bold text-white mb-4 scroll-item slide-from-top">
+            Blog
+          </h1>
+          <p className="text-neutral-400 max-w-2xl mb-16 scroll-item slide-from-top">
+            Thoughts, tutorials, and insights on software engineering, clean
+            code, and the future of web development.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {posts.map((post, index) => (
+              <div
+                key={post.slug}
+                className="scroll-item slide-from-bottom"
+                style={{ transitionDelay: `${index * 0.1}s` }}
+              >
+                <PostCard post={post} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <Footer />
+      </main>
+    </>
   );
 };
 

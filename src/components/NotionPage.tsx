@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { NotionRenderer } from 'react-notion-x';
-import { Code } from 'react-notion-x/build/third-party/code';
-import 'react-notion-x/src/styles.css';
-import 'prismjs/themes/prism-tomorrow.css';
-import { ExtendedRecordMap } from 'notion-types';
+import { NotionRenderer } from "react-notion-x";
+import "react-notion-x/src/styles.css";
+import "prismjs/themes/prism-tomorrow.css";
+import { ExtendedRecordMap } from "notion-types";
+import { NotionCodeWrapper } from "./notion/NotionCodeWrapper";
 
 interface NotionPageProps {
-    recordMap: ExtendedRecordMap;
+  recordMap: ExtendedRecordMap;
 }
 
 export const NotionPage = ({ recordMap }: NotionPageProps) => {
@@ -22,7 +22,7 @@ export const NotionPage = ({ recordMap }: NotionPageProps) => {
       darkMode={true}
       className="notion-container"
       components={{
-        Code: Code,
+        Code: NotionCodeWrapper,
       }}
     />
   );

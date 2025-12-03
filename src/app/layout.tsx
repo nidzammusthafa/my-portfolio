@@ -1,58 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Socials from "@/components/Socials";
-import ScrollIndicator from "@/components/ScrollIndicator";
-import { AuthProvider } from "@/components/auth-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.nidzam.my.id"),
-  title: {
-    default: "Ahmad Nidzam Musthafa - FullStack Web Developer",
-    template: "%s - Ahmad Nidzam Musthafa",
-  },
+  title: "Ahmad Nidzam Musthafa | FullStack Developer",
   description:
-    "A modern and professional personal portfolio website to showcase skills, projects, and offer services as a FullStack Web Developer, built with React and Tailwind CSS.",
-  authors: [{ name: "Ahmad Nidzam Musthafa" }],
-  creator: "Ahmad Nidzam Musthafa",
-  keywords: [
-    "FullStack Developer",
-    "Web Developer",
-    "React",
-    "Next.js",
-    "Tailwind CSS",
-    "JavaScript",
-    "TypeScript",
-    "Portfolio",
-    "Ahmad Nidzam Musthafa",
-  ],
-  openGraph: {
-    type: "website",
-    url: "https://www.nidzam.my.id/",
-    siteName: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
-    title: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
-    description:
-      "A modern and professional personal portfolio website to showcase skills, projects, and offer services as a FullStack Web Developer, built with React and Tailwind CSS.",
-    images: "/developer.webp",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Ahmad Nidzam Musthafa - FullStack Web Developer Portfolio",
-    description:
-      "A modern and professional personal portfolio website to showcase skills, projects, and offer services as a FullStack Web Developer, built with React and Tailwind CSS.",
-    images: "/developer.webp",
-  },
+    "FullStack Web Developer specializing in scalable, maintainable, and readable clean code architecture using modern AI-integrated workflows.",
 };
 
 export default function RootLayout({
@@ -61,24 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="bXCO2kvKS0auCVPb5s-jS36dVELhgH-LAJskTYJAX8Q"
-        />
-      </head>
+    <html lang="en" className="scroll-smooth overflow-x-clip">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-neutral-950 text-neutral-300 selection:bg-accent-500/30 selection:text-white overflow-x-clip`}
       >
-        <AuthProvider protectedRoutes={["/admin/revalidate"]}>
-          <div className="bg-dark-navy text-slate font-sans leading-relaxed selection:bg-accent/20 w-screen overflow-x-hidden lg:overflow-x-visible">
-            <Header />
-            <Socials />
-            <ScrollIndicator />
-            {children}
-          </div>
-        </AuthProvider>
+        {children}
       </body>
     </html>
   );

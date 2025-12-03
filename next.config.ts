@@ -1,18 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* config options here */
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**", // Already allows all, but being explicit is fine.
-      },
-      {
-        protocol: "https",
-        hostname: "placehold.co",
+        hostname: "**",
       },
     ],
   },
+  reactCompiler: true,
 };
 
 export default nextConfig;
