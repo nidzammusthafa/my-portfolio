@@ -9,7 +9,7 @@ export default function Footer() {
         </p>
         <div className="flex gap-4">
           <a
-            href="https://github.com/ahmadnidzam"
+            href="https://github.com/nidzammusthafa"
             target="_blank"
             rel="noopener noreferrer"
             className="text-neutral-500 transition-colors hover:text-white"
@@ -17,7 +17,7 @@ export default function Footer() {
             <Github className="w-5 h-5" />
           </a>
           <a
-            href="https://www.linkedin.com/in/ahmadnidzam"
+            href="https://www.linkedin.com/in/ahmad-nidzam-musthafa-45458b200"
             target="_blank"
             rel="noopener noreferrer"
             className="text-neutral-500 transition-colors hover:text-white"
@@ -25,7 +25,7 @@ export default function Footer() {
             <Linkedin className="w-5 h-5" />
           </a>
           <a
-            href="https://instagram.com/ahmadnidzam"
+            href="https://instagram.com/nidzammst"
             target="_blank"
             rel="noopener noreferrer"
             className="text-neutral-500 transition-colors hover:text-white"
