@@ -18,7 +18,10 @@ import Starfield from "@/components/Starfield";
 import Grid3d from "@/components/Grid3d";
 import Footer from "@/components/Footer";
 
-export const dynamicParams = true;
+// Force static generation at build time
+export const dynamic = "force-static";
+export const revalidate = 3600;
+export const dynamicParams = false; // Only allow pre-generated slugs
 
 type BlogPostParams = { slug: string };
 

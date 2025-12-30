@@ -10,6 +10,10 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import LatestPosts from "@/components/LatestPosts";
 
+// Force static generation at build time - avoids runtime issues with Cloudflare Workers
+export const dynamic = "force-static";
+export const revalidate = 3600; // Revalidate every hour
+
 export default function Home() {
   return (
     <>

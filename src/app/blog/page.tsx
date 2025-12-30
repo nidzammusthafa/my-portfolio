@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     "Insights on web development, software architecture, and modern tech stacks.",
 };
 
+// Force static generation at build time
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
 const AllBlogPostsPage = async () => {
   const posts = await getPublishedBlogPosts();
 
