@@ -4,6 +4,52 @@ Dokumen ini mencatat error yang pernah terjadi dan solusinya saat deploy ke Clou
 
 ---
 
+## Error 0: 404 After Successful Deployment
+
+### Error Message
+
+```
+HTTP ERROR 404 - This page can't be found
+```
+
+### Penyebab
+
+Format `open-next.config.ts` tidak sesuai dengan versi terbaru `@opennextjs/cloudflare`.
+Versi baru menggunakan `defineCloudflareConfig()` dari package.
+
+### Solusi
+
+1. Update `open-next.config.ts`:
+
+```typescript
+import { defineCloudflareConfig } from "@opennextjs/cloudflare";
+
+export default defineCloudflareConfig({
+  // Konfigurasi opsional
+});
+```
+
+2. Update scripts di `package.json`:
+
+```json
+{
+  "scripts": {
+    "build:cloudflare": "opennextjs-cloudflare build",
+    "preview:cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy:cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+  }
+}
+```
+
+3. Tambahkan `public/_headers`:
+
+```
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+```
+
+---
+
 ## Error 1: Dependency Conflict (wrangler version)
 
 ### Error Message

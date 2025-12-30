@@ -1,28 +1,7 @@
-import type { OpenNextConfig } from "@opennextjs/cloudflare";
+import { defineCloudflareConfig } from "@opennextjs/cloudflare";
 
-const config: OpenNextConfig = {
-  default: {
-    override: {
-      wrapper: "cloudflare-node",
-      converter: "edge",
-      proxyExternalRequest: "fetch",
-      incrementalCache: "dummy",
-      tagCache: "dummy",
-      queue: "dummy",
-    },
-  },
-  edgeExternals: ["node:crypto"],
-  middleware: {
-    external: true,
-    override: {
-      wrapper: "cloudflare-edge",
-      converter: "edge",
-      proxyExternalRequest: "fetch",
-      incrementalCache: "dummy",
-      tagCache: "dummy",
-      queue: "dummy",
-    },
-  },
-};
-
-export default config;
+export default defineCloudflareConfig({
+  // Using dummy cache since we don't have R2 bucket configured yet
+  // To enable R2 caching, uncomment the line below and configure R2 bucket in wrangler.jsonc
+  // incrementalCache: r2IncrementalCache,
+});
