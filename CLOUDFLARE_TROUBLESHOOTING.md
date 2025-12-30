@@ -1,6 +1,8 @@
-# 🐛 Troubleshooting: Cloudflare Pages Deployment
+# 🐛 Troubleshooting: Cloudflare Workers Deployment
 
-Dokumen ini mencatat error yang pernah terjadi dan solusinya saat deploy ke Cloudflare Pages. Gunakan sebagai referensi untuk menghindari kesalahan yang sama.
+Dokumen ini mencatat error yang pernah terjadi dan solusinya saat deploy ke Cloudflare Workers. Gunakan sebagai referensi untuk menghindari kesalahan yang sama.
+
+> ⚠️ **CATATAN PENTING:** Deploy dari Windows via CLI **TIDAK DIDUKUNG** karena bug Wrangler dengan file WASM. Gunakan WSL atau Cloudflare Dashboard.
 
 ---
 
